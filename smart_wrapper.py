@@ -11,6 +11,12 @@ class SmartWrapper:
         else:
             return self.__value
 
+    def __str__(self) -> str:
+        return str(self.__value)
+
+    def __repr__(self) -> str:
+        return repr(self.__value)
+
     def gettype(self) -> type:
         return type(self.__value)
 
