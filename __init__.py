@@ -12,7 +12,7 @@ to other wrappers or stay unique.
 """
 
 from typing import Any, List
-import constants
+from smartwrappers import constants
 
 __all__ = [
     'SmartWrapper',
@@ -59,22 +59,28 @@ class SmartWrapper:
         print(x)  # None
         print(y)  # 6
 
+    Class attributes
+    -----------
+    _MISSING: object
+        A dummy object used to determine if value has been passed.
+
     Parameters
     -----------
     value: Any
         An object you put inside the wrapper. It must be a single value.
     """
+    _MISSING = object()
 
     def __init__(self, value: Any) -> None:
         self.__value = value
 
-    def __call__(self, value: Any = None) -> Any:
+    def __call__(self, value: Any = _MISSING) -> Any:
         """
         If value is not defined returns inner value,
         otherwise wrapper put given value inside replacing
         existing one.
         """
-        if value:
+        if value is not SmartWrapper._MISSING:
             self.__value = value
         else:
             return self.__value
@@ -112,11 +118,17 @@ class StrictSmartWrapper(SmartWrapper):
     Note that you can put only single value inside, if you want to store more
     then you should put your values into array and then wrap it.
 
+    Class attributes
+    -----------
+    _MISSING: object
+        A dummy object used to determine if value has been passed.
+
     Parameters
     -----------
     value: Any
         An object you put inside the wrapper. It must be a single value.
     """
+    _MISSING = object()
 
     def __init__(self, value: Any, type_: type) -> None:
         super().__init__(value)
@@ -126,13 +138,13 @@ class StrictSmartWrapper(SmartWrapper):
         StrictSmartWrapper.__check(*args, **kwargs)
         return super(StrictSmartWrapper, cls).__new__(cls)
 
-    def __call__(self, value: Any = None) -> Any:
+    def __call__(self, value: Any = _MISSING) -> Any:
         """
         If value is not defined returns inner value,
         otherwise wrapper put given value inside replacing
         existing one.
         """
-        if value:
+        if value is not StrictSmartWrapper._MISSING:
             self.__check(value, self.__type_)
         return super().__call__(value)
 
