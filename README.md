@@ -30,7 +30,9 @@ x = 1
 plus_five(x)
 print(x)  # >>> 1
     
-# Standard solution: rewrite our code.
+# Standard solution: rewrite our code in a way our function
+# calculates a new value and then we just reassign it to variables
+# whose values we need to change.
     
 def get_plus_five(x):
     return x + 5
@@ -50,7 +52,7 @@ c = b
     
 a = get_plus_five(a)
 # What about b, c and other links
-# in different places of our project?
+# at different places of our project?
 ```
 
 Usage
@@ -58,7 +60,7 @@ Usage
 We can use smart wrappers for that purpose:
 
 ```python
-from smartwrappes import wrap
+from smartwrappers import wrap
     
 a = wrap(1)
 b = a
@@ -87,7 +89,7 @@ Matrices
 We can use smart wrappers for wrapping lists:
 
 ```python
-from smartwrappes import wrap_list
+from smartwrappers import wrap_list
     
 a = wrap_list([1, 2, 3])
 b = [a[0], a[1], a[2]]
@@ -96,7 +98,7 @@ print(b)  # >>> [1, 2, 3]
     
 a[1] = 'a'
 print(a)  # >>> [1, 'a', 3]
-print(b)  # >>> [1, 'a', 3] => wrappers behave like references.
+print(b)  # >>> [1, 'a', 3] => wrappers behave like references to mutable content.
 ```
 
 We can wrap lists with any levels of dimensions:
