@@ -37,7 +37,7 @@ def get_plus_five(x):
     
 x = 1
 x = get_plus_five(x)
-print(x)  # 6
+print(x)  # >>> 6
 ```
 
 What if we have many objects of the same value and want them to have common state?
@@ -64,22 +64,22 @@ a = wrap(1)
 b = a
 c = b
     
-print(a())  # 1
-print(b())  # 1
-print(c())  # 1
+print(a())  # >>> 1
+print(b())  # >>> 1
+print(c())  # >>> 1
     
 a(5)
-print(a())  # 5
-print(b())  # 5
-print(c())  # 5
+print(a())  # >>> 5
+print(b())  # >>> 5
+print(c())  # >>> 5
     
 def plus_five(x):
     x(x() + 5)
     
 plus_five(a)
-print(a())  # 10
-print(b())  # 10
-print(c())  # 10
+print(a())  # >>> 10
+print(b())  # >>> 10
+print(c())  # >>> 10
 ```
     
 Matrices
@@ -91,12 +91,12 @@ from smartwrappes import wrap_list
     
 a = wrap_list([1, 2, 3])
 b = [a[0], a[1], a[2]]
-print(a)  # [1, 2, 3]
-print(b)  # [1, 2, 3]
+print(a)  # >>> [1, 2, 3]
+print(b)  # >>> [1, 2, 3]
     
 a[1] = 'a'
-print(a)  # [1, 'a', 3]
-print(b)  # [1, 'a', 3] => wrappers behave like references.
+print(a)  # >>> [1, 'a', 3]
+print(b)  # >>> [1, 'a', 3] => wrappers behave like references.
 ```
 
 We can wrap lists with any levels of dimensions:
