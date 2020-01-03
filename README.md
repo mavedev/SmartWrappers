@@ -8,13 +8,13 @@ Installing
 
 To install the library, you can just run the following command:
 
-.. code:: sh
+```shell script
+# Linux/macOS
+python3 -m pip install -U smartwrappers
 
-    # Linux/macOS
-    python3 -m pip install -U smartwrappers
-
-    # Windows
-    py -3 -m pip install -U smartwrappers
+# Windows
+py -3 -m pip install -U smartwrappers
+```
 
 Cases to use
 --------------
