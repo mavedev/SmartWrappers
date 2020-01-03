@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, List, Union
 import constants
 
 
@@ -60,5 +60,21 @@ def wrap(value: Any) -> SmartWrapper:
     return SmartWrapper(value)
 
 
+def wrap_list(list_: List[Any], *, dimensions: int = 1) -> List:
+    if dimensions == 1:
+        return [wrap(x) for x in list_]
+    if dimensions > 1:
+        return [wrap_list(x, dimensions=dimensions - 1) for x in list_]
+    raise ValueError(constants.WRONG_DIMENSION)
+
+
 def wrap_strictly(value: Any, type_: type) -> StrictSmartWrapper:
     return StrictSmartWrapper(value, type_)
+
+
+def wrap_list_strictly(list_: List[Any], type_: type, *, dimensions: int = 1) -> List:
+    if dimensions == 1:
+        return [wrap_strictly(x, type_) for x in list_]
+    if dimensions > 1:
+        return [wrap_list_strictly(x, type_, dimensions=dimensions - 1) for x in list_]
+    raise ValueError(constants.WRONG_DIMENSION)
