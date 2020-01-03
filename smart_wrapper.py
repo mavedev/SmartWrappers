@@ -23,6 +23,9 @@ class SmartWrapper:
     def hasattr(self, attr: str) -> bool:
         return hasattr(self.__value, attr)
 
+    def steal(self, other: 'SmartWrapper') -> None:
+        self.__value, other.__value = other.__value, None
+
 
 def wrap(value: Any) -> SmartWrapper:
     return SmartWrapper(value)
