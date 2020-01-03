@@ -62,7 +62,7 @@ We can use smart wrappers for that purpose:
 ```python
 from smartwrappers import wrap
     
-a = wrap(1)
+a = wrap(1)  # or explicitly a = SmartWrapper(1)
 b = a
 c = b
     
@@ -122,4 +122,15 @@ a[0][1](0)
 #  b keeps changes:
 #        1 3
 #        0 4
+```
+
+If we don't want to put inside our wrapper values of different types we can use StrictSmartWrapper:
+
+```python
+from smartwrappers import wrap_strictly
+
+a = wrap_strictly('hello', str)
+a('world')  # OK.
+a(5)  # Error.
+b = wrap_strictly('hello', int)  # Error.
 ```
